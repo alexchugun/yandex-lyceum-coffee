@@ -4,8 +4,10 @@ from PyQt5 import uic
 from PyQt5.QtSql import QSqlDatabase, QSqlTableModel
 from PyQt5.QtWidgets import QWidget, QTableView, QApplication, QMainWindow
 
+from ui.add_edit_coffee_ui import Ui_AddEditCoffeeWindow
 
-class AddEditCoffee(QMainWindow):
+
+class AddEditCoffee(QMainWindow, Ui_AddEditCoffeeWindow):
     def __init__(self, parent, data=None):
         super().__init__()
 
@@ -18,7 +20,7 @@ class AddEditCoffee(QMainWindow):
         self.initUI()
 
     def initUI(self):
-        uic.loadUi('addEditCoffeeForm.ui', self)
+        self.setupUi(self)
 
         if self.data is not None:
             self.set_data()

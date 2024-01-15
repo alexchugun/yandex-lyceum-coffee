@@ -4,20 +4,22 @@ from PyQt5 import uic
 from PyQt5.QtSql import QSqlDatabase, QSqlTableModel
 from PyQt5.QtWidgets import QWidget, QTableView, QApplication, QMainWindow
 
+from ui.main_ui import Ui_MainWindow
+
 from addEditCoffee import AddEditCoffee
 
 
-class Example(QMainWindow):
+class Example(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
 
         self.initUI()
 
     def initUI(self):
-        uic.loadUi('main.ui', self)
+        self.setupUi(self)
 
         self.db = QSqlDatabase.addDatabase('QSQLITE')
-        self.db.setDatabaseName('coffee.sqlite')
+        self.db.setDatabaseName('data/coffee.sqlite')
         self.db.open()
 
         self.model = QSqlTableModel(self, self.db)
